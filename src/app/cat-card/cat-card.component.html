@@ -1,0 +1,26 @@
+<div class="card">
+  <div>
+    <div *ngIf="!isEdit; else editName" class="card-header">
+      {{cat.name}}<a (click)="editCatName()">edit</a>
+    </div>
+    <ng-template #editName>
+      <div class="card-header">
+      <form [formGroup]="catNameForm">
+        <input class="form-control" formControlName="name">
+        <button class="btn btn-primary" (click)="saveCatName()">Save</button>
+      </form>
+      </div>
+    </ng-template>
+  </div>
+  <div class="card-body">
+    {{cat.name}} is a {{cat.age}} year old {{cat.color}} cat that loves to Meow<br>
+    <ng-container *ngIf="cat.isHungry && !cat.isStrayCat">{{cat.name}} is hungry, if you don't feed him - he'll leave
+      in {{timeToLeave}} seconds
+    </ng-container>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-primary" (click)="adopt()" *ngIf="cat.isStrayCat">Adopt</button>
+    <button class="btn btn-primary" (click)="onShoo.emit()">Shoo</button>
+    <button class="btn btn-primary" (click)="cat.feed()" *ngIf="cat.isHungry && !cat.isStrayCat">Feed</button>
+  </div>
+</div>

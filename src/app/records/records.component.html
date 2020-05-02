@@ -1,0 +1,8 @@
+<div class="records-background">
+  <div class="records-container">
+      <ul *ngIf="records.length; else noRecords">
+        <li *ngFor="let record of records">{{record}}</li>
+      </ul>
+    <ng-template #noRecords>No records found</ng-template>
+    </div>
+</div>

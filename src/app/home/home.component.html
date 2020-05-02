@@ -1,0 +1,27 @@
+<app-nav-bar (onShowRecords)="showRecords = $event"></app-nav-bar>
+<app-records *ngIf="showRecords"></app-records>
+<div>
+  <div class="my-cats">
+    <div class="list-title">My Cats</div>
+    <div class="list-container">
+      <app-cat-card *ngFor="let cat of myCats"
+                    [cat]="cat"
+                    (onShoo)="shooAdoptedCat(cat)"
+      ></app-cat-card>
+      <div *ngIf="!myCats.length" class="empty-state">
+        You do not have any cats o your own!
+      </div>
+    </div>
+  </div>
+  <div class="stray-cats">
+    <div class="list-title">Stray Cats</div>
+    <div class="list-container">
+      <app-cat-card
+        *ngFor="let cat of strayCats"
+        [cat]="cat"
+        (onAdopt)="adopt(cat)"
+        (onShoo)="removeItemFromList(cat, strayCats)"
+      ></app-cat-card>
+    </div>
+  </div>
+</div>
